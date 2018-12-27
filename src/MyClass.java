@@ -47,9 +47,6 @@ public class MyClass {
 		
 		  
 		   
-		    
-//		   a = getSaltString();
-//		   System.out.println(a);
 		
 		  // Base Url
 	      driver.get("http://stage.retainoo.com/#/business-admin/account/register");
