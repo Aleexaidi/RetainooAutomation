@@ -40,7 +40,7 @@ public class StaffClass {
 	
 	
 	
-	void login() {
+	void login(int i) {
 		
 
 	      driver.get("http://dev.retainoo.com/#/business-admin/account/login");

@@ -15,8 +15,17 @@ public class MyClass {
     		
 
 	public static void main(String[] args) {
-		for(int i = 80; i<86; i++) {
-			makeSalon(i);
+		
+		
+		   
+		for(int i = 2; i<5; i++) {
+			
+			System.setProperty("webdriver.chrome.driver", "D:\\Selenium\\Selenium\\chromedriver.exe");
+			
+			   WebDriver driver = new ChromeDriver();
+			
+			registersalon(i,driver);
+			makeSalon(i,driver);
 		}
       
 	}
@@ -38,47 +47,122 @@ public class MyClass {
 //	}
 	
 	
-	//Function for making salon
-	protected static void makeSalon(int i) {
+	protected static void registersalon(int i, WebDriver driver) {
 		
-		System.setProperty("webdriver.chrome.driver", "D:\\Selenium\\Selenium\\chromedriver.exe");
 		
-		   WebDriver driver = new ChromeDriver();
 		
+		   driver.manage().window().maximize();
+		   driver.get("http://my5tech.com/dev/retainoo/sign-up-to-simple-retainoos/?title=POPULAR_RETENTION");
+		   
+		   try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		  
+		   
+		   driver.findElement(By.xpath("//*[@id=\"FullNameTB\"]")).sendKeys("Salon");
+	       driver.findElement(By.xpath("//*[@id=\"MNameTB\"]")).sendKeys("Test"); 
+	       driver.findElement(By.xpath("//*[@id=\"LameTB*\"]")).sendKeys(""+ i );
+	       driver.findElement(By.xpath("//*[@id=\"Businessname*\"]")).sendKeys("MyBusiness");
+	       Select designdropdown = new Select(driver.findElement(By.xpath("//*[@id=\"PackageDDL\"]")));
+	       designdropdown.selectByIndex(2);
+	       driver.findElement(By.xpath("//*[@id=\"EmailTB\"]")).sendKeys("Salon" +i+"@retainoo.com");
+	       Select timezone = new Select(driver.findElement(By.xpath("//*[@id=\"time_zone\"]")));
+	       timezone.selectByIndex(247);;
+	       
+	   
+	       WebElement plancheckbox = driver.findElement(By.xpath("//*[@id=\"signupPackageSelect\"]/div[2]/div/div[2]/input"));
+	       ((JavascriptExecutor) driver).executeScript("arguments[0].click();",plancheckbox); 
+	       
+	       driver.findElement(By.xpath("//*[@id=\"signup1\"]/div[15]/input")).sendKeys("4111111111111111");
+	       driver.findElement(By.xpath("//*[@id=\"signup1\"]/div[16]/input")).sendKeys("123");
+	       driver.findElement(By.xpath("//*[@id=\"signup1\"]/div[17]/div[1]/input")).sendKeys("03");
+	       driver.findElement(By.xpath("//*[@id=\"signup1\"]/div[17]/div[2]/input")).sendKeys("2025");
+	     
+	       WebElement termscheckbox = driver.findElement(By.xpath("//*[@id=\"signup1\"]/p/input[1]"));
+	       ((JavascriptExecutor) driver).executeScript("arguments[0].click();",termscheckbox);
+	       
+	       WebElement policycheckbox = driver.findElement(By.xpath("//*[@id=\"signup1\"]/p/input[2]"));
+	       ((JavascriptExecutor) driver).executeScript("arguments[0].click();",policycheckbox);
+	       
+	       WebElement tcheckbox = driver.findElement(By.xpath("//*[@id=\"signup1\"]/p/input[3]"));
+	       ((JavascriptExecutor) driver).executeScript("arguments[0].click();",tcheckbox);
+	       
+	       
+	       
+//	       To Scroll
+//	       JavascriptExecutor js = (JavascriptExecutor) driver;
+//	       js.executeScript("window.scrollBy(0,5000)");
+	       
+//	       try {
+//				Thread.sleep(5000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+	       
+	     
+	       driver.findElement(By.xpath("//*[@id=\"signupNext\"]")).click();
+	       
+	       try {
+				Thread.sleep(35000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	       
+		
+	}
+	
+	//Function for making salon
+	protected static void makeSalon(int i, WebDriver driver) {
+		
+		
+	       
+	       
+	       
+	       
+	    
+		  // driver.findElement(By.xpath("//*[@id=\"menu-item-14166\"]/a/span")).click();
+		   
+		   //driver.findElement(By.xpath("//*[@id=\"post-14156\"]/div/div[10]/div/div[2]/span/a/span")).click();
+		   
+		   
+	       
+	       
+	       
+	       
 		   
 		
 		  // Base Url
-	      driver.get("http://stage.retainoo.com/#/business-admin/account/register");
-       driver.manage().window().maximize();
-       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[1]/div/input")).sendKeys("Salon");
-       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[2]/div/input")).sendKeys("For"); 
-       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[3]/div/input")).sendKeys(""+i); 
-       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[4]/div/input")).sendKeys("salon"+ i + "@retainoo.com"); 
-       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[5]/div/input")).sendKeys("salon"+ i + "@retainoo.com");
-       Select dropdown = new Select(driver.findElement(By.xpath(" //*[@id=\"container\"]/div/div/div/form/div[6]/div/select")));
-       dropdown.selectByIndex(1);
-       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[7]/div/input")).sendKeys("Salon"+i);
-      
-       WebElement checkbox = driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[8]/label"));
-       ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
-       
-       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/button")).click();
-       
-       driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/div/div/button")).click();
+//	      driver.get("http://dev.retainoo.com/#/business-admin/account/register");
+//       driver.manage().window().maximize();
+//       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[1]/div/input")).sendKeys("Salon");
+//       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[2]/div/input")).sendKeys("For"); 
+//       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[3]/div/input")).sendKeys(""+i); 
+//       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[4]/div/input")).sendKeys("salon"+ i + "@retainoo.com"); 
+//       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[5]/div/input")).sendKeys("salon"+ i + "@retainoo.com");
+//       Select dropdown = new Select(driver.findElement(By.xpath(" //*[@id=\"container\"]/div/div/div/form/div[6]/div/select")));
+//       dropdown.selectByIndex(1);
+//       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[7]/div/input")).sendKeys("Salon"+i);
+//      
+//       WebElement checkbox = driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/div[8]/label"));
+//       ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
+//       
+//       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/form/button")).click();
+//       
+//       driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//       driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div/div/div/button")).click();
   
        //now the login screen starts
        
-       try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
        
        
 //       driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+       
+       driver.get("http://stage.retainoo.com/#/business-admin/account/login");
        
        driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div[1]/form/div[1]/input")).sendKeys("salon"+ i + "@retainoo.com");
        driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div[1]/form/div[2]/input")).sendKeys("retainoo");
@@ -123,7 +207,9 @@ public class MyClass {
    	 
     }
     	   
-   
+       
+       
+       
      String currentUrl="http://stage.retainoo.com/#/business-admin/wizard";
      
      if(currentUrl.contains("/wizard")){
